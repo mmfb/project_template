@@ -25,7 +25,7 @@ router.get('/auth',auth.verifyAuth,  async function (req, res, next) {
 
 router.post('', async function (req, res, next) {
     try {
-        console.log("Register player ");
+        console.log("Register user ");
         let user = new User();
         user.name = req.body.username;
         user.pass = req.body.password;
@@ -39,12 +39,12 @@ router.post('', async function (req, res, next) {
 
 router.delete('/auth', auth.verifyAuth, async function (req, res, next) {
     try {
-        console.log("Logout player ");
+        console.log("Logout user ");
         // this will delete everything in the cookie
         req.session = null;
         // Put database token to null (req.user token is undefined so saving in db will result in null)
         let result = await User.saveToken(req.user);
-        res.status(200).send({ msg: "Player logged out!" });
+        res.status(200).send({ msg: "User logged out!" });
     } catch (err) {
         console.log(err);
         res.status(500).send(err);
@@ -53,7 +53,7 @@ router.delete('/auth', auth.verifyAuth, async function (req, res, next) {
 
 router.post('/auth', async function (req, res, next) {
     try {
-        console.log("Login player ");
+        console.log("Login user ");
         let user = new User();
         user.name = req.body.username;
         user.pass = req.body.password;

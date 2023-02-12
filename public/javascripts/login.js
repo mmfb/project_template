@@ -11,9 +11,7 @@ async function login() {
             msgDOM.textContent = "Wrong username or password";    
         } else {
             msgDOM.textContent = "Login successful!";    
-            // checkGame already loads the correct page
-            let result=await checkGame();  
-            if (result.err) msgDOM.textContent = "An error occurred";
+            window.location.pathname = "/profile.html"
         }
     } catch (err) {
         console.log(err);
